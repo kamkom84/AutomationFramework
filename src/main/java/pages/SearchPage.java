@@ -35,7 +35,5 @@ public class SearchPage {
 		return displayStatus;
 		
 	}
-	
-	
 
 }

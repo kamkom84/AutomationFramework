@@ -25,12 +25,5 @@ public class AccountPage {
 		return displayStatus;
 		
 	}
-	
-	
-	
-	
-	
-	
-	
 
 }

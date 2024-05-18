@@ -8,9 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 public class RegisterPage {
 	
 	WebDriver driver;
-	
-	
-	
+
 	@FindBy(id="input-firstname")
 	private WebElement firstNameField;
 	
@@ -214,20 +212,5 @@ public class RegisterPage {
 			   emailWarningStatus && telephoneWarningStatus && passwordWarningStatus;
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }

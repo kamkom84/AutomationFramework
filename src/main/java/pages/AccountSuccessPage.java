@@ -25,13 +25,5 @@ public class AccountSuccessPage {
 		return accountSuccessPageHeadingText;
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 
 }

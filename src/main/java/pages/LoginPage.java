@@ -45,7 +45,6 @@ public class LoginPage {
 		loginButton.click();
 		return new AccountPage(driver);
 		
-		
 	}
 	
 	public AccountPage login(String emailText, String passwordText) {
@@ -63,8 +62,6 @@ public class LoginPage {
 		return warningText;
 		
 	}
-	
-	
 
 }
 

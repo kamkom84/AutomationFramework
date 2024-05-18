@@ -20,8 +20,7 @@ public class Base {
 		
 		prop = new Properties();
 		File propFile = new File(System.getProperty("user.dir") + "\\src\\main\\java\\config\\config.properties");
-		
-		
+
 		dataProp = new Properties();
 		File dataPropFile = new File(System.getProperty("user.dir") + "\\src\\main\\java\\testdata\\testdata.properties");
 		

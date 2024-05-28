@@ -54,7 +54,7 @@ public class TestListeners implements ITestListener{
 		}
 		
 		File srcScreenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-		String destinationScreenshotPath = System.getProperty("user.dir") + "Screenshots\\" + testName + ".png"; 
+		String destinationScreenshotPath = System.getProperty("user.dir") + "Screenshots" + testName + ".png";
 		
 		try {
 			FileHandler.copy(srcScreenshot, new File(destinationScreenshotPath));

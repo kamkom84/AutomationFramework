@@ -56,7 +56,6 @@ public class HomePage {
 
 	}
 
-
 	public void clickOnMyAccount() {
 
 		myAccountDropMenu.click();

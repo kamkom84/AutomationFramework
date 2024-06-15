@@ -18,7 +18,7 @@ public class ExtentReporter {
 		ExtentSparkReporter sparkReporter = new ExtentSparkReporter(extentReportFile);
 		
 		sparkReporter.config().setTheme(Theme.DARK);
-		sparkReporter.config().setReportName("Test Automation Results");
+		sparkReporter.config().setReportName("Test Home Automation Results");
 		sparkReporter.config().setDocumentTitle("Automation Report");
 		sparkReporter.config().setTimeStampFormat("dd/MM/yyyy hh:mm:ss");
 		

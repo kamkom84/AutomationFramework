@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: javaApiTest
+    name: Automation UI Test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -25,6 +25,20 @@ jobs:
 
       - name: Verify Java version
         run: java -version
+
+      - name: Verify Maven installation
+        run: mvn -version
+
+      - name: Copy configuration files
+        run: |
+          mkdir -p src/main/java/testdata
+          echo 'your testdata.properties content' > src/main/java/testdata/testdata.properties
+          mkdir -p src/main/java/config
+          echo 'your config.properties content' > src/main/java/config/config.properties
+
+      - name: Run api tests
+        run: mvn clean test
+
 
       - name: Verify Maven installation
         run: mvn -version

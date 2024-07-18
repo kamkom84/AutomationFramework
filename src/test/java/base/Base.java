@@ -47,7 +47,7 @@ public class Base {
 			
 			driver = new ChromeDriver();
 			
-		}else if(browser.equalsIgnoreCase("firefox")) {
+		}else if(browser.equalsIgnoreCase("firefoxXX")) {
 			
 			driver = new FirefoxDriver();
 			

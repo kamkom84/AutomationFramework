@@ -72,8 +72,8 @@ public class Base {
 		options.addArguments("--window-size=1920,1080");
 
 //		driver.manage().window().maximize();
-//		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Utilities.IMPLICIT_WAIT_TIME));
-//		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(Utilities.PAGE_LOAD_TIME));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Utilities.IMPLICIT_WAIT_TIME));
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(Utilities.PAGE_LOAD_TIME));
 		driver.get(prop.getProperty("url"));
 		
 		return driver;

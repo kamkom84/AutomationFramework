@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: automation UI tests
+    name: uiAutomationTest
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -38,5 +38,5 @@ jobs:
           echo 'browser=chrome' > src/main/java/config/config.properties
           echo 'baseUrl=http://example.com' >> src/main/java/config/config.properties
 
-      - name: Run automation UI tests
+      - name: Run UI tests
         run: mvn clean test

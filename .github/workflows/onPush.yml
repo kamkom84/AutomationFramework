@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Automation UI Test
+    name: uiAutomationTest
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -32,16 +32,11 @@ jobs:
       - name: Copy configuration files
         run: |
           mkdir -p src/main/java/testdata
-          echo 'your testdata.properties content' > src/main/java/testdata/testdata.properties
+          echo 'username=testuser' > src/main/java/testdata/testdata.properties
+          echo 'password=testpassword' >> src/main/java/testdata/testdata.properties
           mkdir -p src/main/java/config
-          echo 'your config.properties content' > src/main/java/config/config.properties
+          echo 'browser=chrome' > src/main/java/config/config.properties
+          echo 'baseUrl=http://example.com' >> src/main/java/config/config.properties
 
-      - name: Run api tests
-        run: mvn clean test
-
-
-      - name: Verify Maven installation
-        run: mvn -version
-
-      - name: Run api tests
+      - name: Run UI tests
         run: mvn clean test

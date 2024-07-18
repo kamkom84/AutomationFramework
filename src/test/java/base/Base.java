@@ -56,6 +56,8 @@ public class Base {
 			
 			driver = new EdgeDriver();
 			
+		}else {
+			throw new IllegalArgumentException("Browser type not supported");
 		}
 
 		ChromeOptions options = new ChromeOptions();

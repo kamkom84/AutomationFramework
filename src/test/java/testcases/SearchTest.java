@@ -12,7 +12,9 @@ import pages.SearchPage;
 public class SearchTest extends Base{
 	
 	public SearchTest() {
+
 		super();
+
 	}
 	
 	public WebDriver driver;

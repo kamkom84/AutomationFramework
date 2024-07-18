@@ -12,7 +12,7 @@ public class AccountSuccessPage {
 	@FindBy(xpath="//div[@id='content']/h1")
 	private WebElement accountSuccessPageHeading;
 	
-	public AccountSuccessPage(WebDriver driver) {
+	public AccountSuccessPage(WebDriver driver ) {
 		
 		this.driver = driver;
 		PageFactory.initElements(driver, this);

@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: javaApiTest
+    name: AutomationTest
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

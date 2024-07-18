@@ -43,7 +43,11 @@ public class Base {
 	}
 	
 	public WebDriver initializeBrowserAndOpenApplicationURL(String browser) {
-		
+
+		if (browser == null) {
+			throw new RuntimeException("Browser is not specified in the config file.");
+		}
+
 		if(browser.equalsIgnoreCase("chrome")) {
 			
 			driver = new ChromeDriver();

@@ -46,10 +46,6 @@ public class Base {
 
 		WebDriver driver;
 
-//		if (browser == null) {
-//			throw new RuntimeException("Browser is not specified in the config file.");
-//		}
-
 		if(browser.equalsIgnoreCase("chrome")) {
 			
 			driver = new ChromeDriver();

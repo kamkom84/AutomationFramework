@@ -13,7 +13,6 @@ import utils.Utilities;
 
 public class Base {
 	
-	//WebDriver driver;
 	public Properties prop;
 	public Properties dataProp;
 	

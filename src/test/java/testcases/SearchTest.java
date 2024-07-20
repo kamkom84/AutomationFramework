@@ -29,7 +29,7 @@ public class SearchTest extends Base{
 	}
 	
 	@AfterMethod
-	public void teardown() {
+	public void tearDown() {
 		
 		driver.quit();
 		

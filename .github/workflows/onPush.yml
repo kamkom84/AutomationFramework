@@ -1,22 +1,16 @@
-name: UI Tests
+name: test_on_push
 
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   ui_tests:
     runs-on: ubuntu-latest
-
-    services:
-      selenium:
-        image: selenium/standalone-chrome
-        ports:
-          - 4444:4444
 
     steps:
     - name: Checkout code
@@ -39,7 +33,18 @@ jobs:
     - name: Build with Maven
       run: mvn clean install
 
+    - name: Install Chrome browser
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y google-chrome-stable
+
+    - name: Set up ChromeDriver
+      run: |
+        CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
+        CHROMEDRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION)
+        curl -sS -o /tmp/chromedriver_linux64.zip http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
+        sudo unzip -o /tmp/chromedriver_linux64.zip -d /usr/local/bin/
+
     - name: Run UI tests
-      run: mvn test
-      env:
-        SELENIUM_REMOTE_URL: http://localhost:4444/wd/hub
+      run: mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testng.xml
+

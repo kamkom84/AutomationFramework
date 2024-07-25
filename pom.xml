@@ -2,11 +2,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://www.w3.org/2001/XMLSchema-instance/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>tnp</groupId>
-    <artifactId>TutorialsNinjaProj</artifactId>
+    <groupId>uit</groupId>
+    <artifactId>UITest</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    <name>TutorialsNinjaProj</name>
+    <name>UI Tests</name>
     <url>http://tutorialsninja.com/demo/</url>
 
     <properties>

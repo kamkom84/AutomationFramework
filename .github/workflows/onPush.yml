@@ -19,7 +19,7 @@ jobs:
     - name: Set up JDK
       uses: actions/setup-java@v2
       with:
-        distribution: 'adopt'
+        distribution: 'temurin'
         java-version: '17'
 
     - name: Cache Maven packages
@@ -32,6 +32,17 @@ jobs:
 
     - name: Build with Maven
       run: mvn clean install
+
+    - name: Install Chrome browser
+      run: choco install googlechrome --version=126.0.0
+
+    - name: Set up ChromeDriver
+      run: |
+        $chromeVersion = (Get-Command "C:\Program Files\Google\Chrome\Application\chrome.exe").FileVersionInfo.ProductVersion
+        $chromeDriverVersion = Invoke-RestMethod -Uri "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$chromeVersion"
+        Invoke-WebRequest -Uri "https://chromedriver.storage.googleapis.com/$chromeDriverVersion/chromedriver_win32.zip" -OutFile "chromedriver.zip"
+        Expand-Archive -Path "chromedriver.zip" -DestinationPath "C:\chromedriver"
+        $env:Path += ";C:\chromedriver"
 
     - name: Run UI tests
       run: mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testng.xml

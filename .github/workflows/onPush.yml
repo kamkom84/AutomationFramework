@@ -10,7 +10,7 @@ on:
 
 jobs:
   ui_tests:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - name: Checkout code
@@ -19,7 +19,7 @@ jobs:
     - name: Set up JDK
       uses: actions/setup-java@v2
       with:
-        distribution: 'adopt'
+        distribution: 'temurin'
         java-version: '17'
 
     - name: Cache Maven packages
@@ -34,17 +34,22 @@ jobs:
       run: mvn clean install
 
     - name: Install Chrome browser
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y google-chrome-stable
+      run: choco install googlechrome --version=126.0.0
 
     - name: Set up ChromeDriver
       run: |
-        CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
-        CHROMEDRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION)
-        curl -sS -o /tmp/chromedriver_linux64.zip http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
-        sudo unzip -o /tmp/chromedriver_linux64.zip -d /usr/local/bin/
+        $chromeVersion = (Get-Command "C:\Program Files\Google\Chrome\Application\chrome.exe").FileVersionInfo.ProductVersion
+        $chromeDriverVersion = Invoke-RestMethod -Uri "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$chromeVersion"
+        Invoke-WebRequest -Uri "https://chromedriver.storage.googleapis.com/$chromeDriverVersion/chromedriver_win32.zip" -OutFile "chromedriver.zip"
+        Expand-Archive -Path "chromedriver.zip" -DestinationPath "C:\chromedriver"
+        $env:Path += ";C:\chromedriver"
 
     - name: Run UI tests
       run: mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testng.xml
+
+    - name: Clean up
+      if: always()
+      run: |
+        taskkill /F /IM chromedriver.exe /T
+        taskkill /F /IM chrome.exe /T
 

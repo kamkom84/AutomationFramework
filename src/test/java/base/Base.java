@@ -62,13 +62,13 @@ public class Base {
 			throw new IllegalArgumentException("Browser type not supported");
 
 		}
-
+/*
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--headless");
 		options.addArguments("--disable-gpu");
 		options.addArguments("--window-size=1920,1080");
-
-//		driver.manage().window().maximize();
+*/
+		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Utilities.IMPLICIT_WAIT_TIME));
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(Utilities.PAGE_LOAD_TIME));
 		driver.get(prop.getProperty("url"));

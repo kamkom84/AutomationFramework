@@ -2,61 +2,87 @@ package testcases;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import base.Base;
 import pages.HomePage;
 import pages.SearchPage;
+import utils.TestResult;
 
-public class SearchTest extends Base{
-	
+import java.util.ArrayList;
+import java.util.List;
+
+public class SearchTest extends Base {
+
 	public SearchTest() {
-
 		super();
-
 	}
-	
+
 	public WebDriver driver;
 	SearchPage searchPage;
 	HomePage homePage;
-	
-	@BeforeMethod
+	List<TestResult> testResults;
+
+	@BeforeClass
 	public void setup() {
-		
 		driver = initializeBrowserAndOpenApplicationURL(prop.getProperty("browser"));
 		homePage = new HomePage(driver);
-	}
-	
-	@AfterMethod
-	public void tearDown() {
-		
-		driver.quit();
-		
-	}
-	
-	@Test(priority=1)
-	public void verifySearchWithValidProduct() {
-		
-		searchPage =  homePage.searchForAProduct(dataProp.getProperty("validProduct"));
-		Assert.assertTrue(searchPage.displayStatusOfHPValidProduct(), "Valid product HP is not displayed");
-		
-	}
-	
-	@Test(priority=2)
-	public void verifySearchWithInvalidProduct() {
-		
-		searchPage =  homePage.searchForAProduct(dataProp.getProperty("invalidProduct"));
-		Assert.assertEquals(searchPage.getNoProductMessageText(), dataProp.getProperty("noProductTextInSearchResults"));
-		
-	}
-	
-	@Test(priority=3)
-	public void verifySearchWithoutAnyProduct() {
-		
-		searchPage = homePage.clickOnSearchButton();
-		Assert.assertEquals(searchPage.getNoProductMessageText(), dataProp.getProperty("noProductTextInSearchResults"));
-		
+		testResults = new ArrayList<>();
 	}
 
+	@AfterClass
+	public void tearDown() {
+		printTestResults();
+		if (driver != null) {
+			driver.quit();
+		}
+	}
+
+	private void printTestResults() {
+		System.out.println("Test Results:");
+		for (TestResult result : testResults) {
+			System.out.println(result);
+		}
+	}
+
+	@Test(priority = 1)
+	public void verifySearchWithValidProduct() {
+		try {
+			searchPage = homePage.searchForAProduct(dataProp.getProperty("validProduct"));
+			boolean isDisplayed = searchPage.displayStatusOfHPValidProduct();
+			Assert.assertTrue(isDisplayed, "Valid product HP is not displayed");
+			testResults.add(new TestResult("verifySearchWithValidProduct", "Passed"));
+		} catch (AssertionError | Exception e) {
+			testResults.add(new TestResult("verifySearchWithValidProduct", "Failed: " + e.getMessage()));
+			throw e; // Преизвикване на грешката, за да се маркира тестът като неуспешен в отчетите на TestNG
+		}
+	}
+
+	@Test(priority = 2)
+	public void verifySearchWithInvalidProduct() {
+		try {
+			searchPage = homePage.searchForAProduct(dataProp.getProperty("invalidProduct"));
+			String noProductMessage = searchPage.getNoProductMessageText();
+			Assert.assertEquals(noProductMessage, dataProp.getProperty("noProductTextInSearchResults"));
+			testResults.add(new TestResult("verifySearchWithInvalidProduct", "Passed"));
+		} catch (AssertionError | Exception e) {
+			testResults.add(new TestResult("verifySearchWithInvalidProduct", "Failed: " + e.getMessage()));
+			throw e; // Преизвикване на грешката, за да се маркира тестът като неуспешен в отчетите на TestNG
+		}
+	}
+
+	@Test(priority = 3)
+	public void verifySearchWithoutAnyProduct() {
+		try {
+			searchPage = homePage.clickOnSearchButton();
+			String noProductMessage = searchPage.getNoProductMessageText();
+			Assert.assertEquals(noProductMessage, dataProp.getProperty("noProductTextInSearchResults"));
+			testResults.add(new TestResult("verifySearchWithoutAnyProduct", "Passed"));
+		} catch (AssertionError | Exception e) {
+			testResults.add(new TestResult("verifySearchWithoutAnyProduct", "Failed: " + e.getMessage()));
+			throw e; // Преизвикване на грешката, за да се маркира тестът като неуспешен в отчетите на TestNG
+		}
+	}
 }
+

@@ -52,9 +52,9 @@ public class SearchTest extends Base {
 			searchPage = homePage.searchForAProduct(dataProp.getProperty("validProduct"));
 			boolean isDisplayed = searchPage.displayStatusOfHPValidProduct();
 			Assert.assertTrue(isDisplayed, "Valid product HP is not displayed");
-			testResults.add(new TestResult("verifySearchWithValidProduct", "Passed"));
+			testResults.add(new TestResult("Verify Search With Valid Product", "Passed"));
 		} catch (AssertionError | Exception e) {
-			testResults.add(new TestResult("verifySearchWithValidProduct", "Failed: " + e.getMessage()));
+			testResults.add(new TestResult("Verify Search With Valid Product", "Failed: " + e.getMessage()));
 			throw e; // Преизвикване на грешката, за да се маркира тестът като неуспешен в отчетите на TestNG
 		}
 	}
@@ -65,9 +65,9 @@ public class SearchTest extends Base {
 			searchPage = homePage.searchForAProduct(dataProp.getProperty("invalidProduct"));
 			String noProductMessage = searchPage.getNoProductMessageText();
 			Assert.assertEquals(noProductMessage, dataProp.getProperty("noProductTextInSearchResults"));
-			testResults.add(new TestResult("verifySearchWithInvalidProduct", "Passed"));
+			testResults.add(new TestResult("Verify Search With Invalid Product", "Passed"));
 		} catch (AssertionError | Exception e) {
-			testResults.add(new TestResult("verifySearchWithInvalidProduct", "Failed: " + e.getMessage()));
+			testResults.add(new TestResult("Verify Search With Invalid Product", "Failed: " + e.getMessage()));
 			throw e; // Преизвикване на грешката, за да се маркира тестът като неуспешен в отчетите на TestNG
 		}
 	}
@@ -78,9 +78,9 @@ public class SearchTest extends Base {
 			searchPage = homePage.clickOnSearchButton();
 			String noProductMessage = searchPage.getNoProductMessageText();
 			Assert.assertEquals(noProductMessage, dataProp.getProperty("noProductTextInSearchResults"));
-			testResults.add(new TestResult("verifySearchWithoutAnyProduct", "Passed"));
+			testResults.add(new TestResult("Verify Search Without Any Product", "Passed"));
 		} catch (AssertionError | Exception e) {
-			testResults.add(new TestResult("verifySearchWithoutAnyProduct", "Failed: " + e.getMessage()));
+			testResults.add(new TestResult("Verify Search Without Any Product", "Failed: " + e.getMessage()));
 			throw e; // Преизвикване на грешката, за да се маркира тестът като неуспешен в отчетите на TestNG
 		}
 	}

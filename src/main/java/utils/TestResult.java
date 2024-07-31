@@ -1,6 +1,7 @@
 package utils;
 
 public class TestResult {
+
     private String testName;
     private String result;
 

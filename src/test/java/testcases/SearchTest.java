@@ -84,5 +84,6 @@ public class SearchTest extends Base {
 			throw e; // Преизвикване на грешката, за да се маркира тестът като неуспешен в отчетите на TestNG
 		}
 	}
+
 }
 

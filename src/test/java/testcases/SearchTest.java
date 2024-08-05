@@ -33,10 +33,10 @@ public class SearchTest extends Base {
 
 	@AfterClass
 	public void tearDown() {
-		printTestResults();
-		if (driver != null) {
-			driver.quit();
-		}
+//		printTestResults();
+//		if (driver != null) {
+//			driver.quit();
+//		}
 	}
 
 	private void printTestResults() {
@@ -55,7 +55,7 @@ public class SearchTest extends Base {
 			testResults.add(new TestResult("Verify Search With Valid Product", "Passed"));
 		} catch (AssertionError | Exception e) {
 			testResults.add(new TestResult("Verify Search With Valid Product", "Failed: " + e.getMessage()));
-			throw e; // Преизвикване на грешката, за да се маркира тестът като неуспешен в отчетите на TestNG
+			throw e;
 		}
 	}
 
@@ -68,7 +68,7 @@ public class SearchTest extends Base {
 			testResults.add(new TestResult("Verify Search With Invalid Product", "Passed"));
 		} catch (AssertionError | Exception e) {
 			testResults.add(new TestResult("Verify Search With Invalid Product", "Failed: " + e.getMessage()));
-			throw e; // Преизвикване на грешката, за да се маркира тестът като неуспешен в отчетите на TestNG
+			throw e;
 		}
 	}
 
@@ -81,7 +81,7 @@ public class SearchTest extends Base {
 			testResults.add(new TestResult("Verify Search Without Any Product", "Passed"));
 		} catch (AssertionError | Exception e) {
 			testResults.add(new TestResult("Verify Search Without Any Product", "Failed: " + e.getMessage()));
-			throw e; // Преизвикване на грешката, за да се маркира тестът като неуспешен в отчетите на TestNG
+			throw e;
 		}
 	}
 

@@ -33,10 +33,10 @@ public class SearchTest extends Base {
 
 	@AfterClass
 	public void tearDown() {
-//		printTestResults();
-//		if (driver != null) {
-//			driver.quit();
-//		}
+		printTestResults();
+		if (driver != null) {
+			driver.quit();
+		}
 	}
 
 	private void printTestResults() {

@@ -1,16 +1,17 @@
 package testcases;
 
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.ITestResult;
+import org.testng.annotations.*;
 import base.Base;
 import pages.AccountPage;
 import pages.HomePage;
 import pages.LoginPage;
+import utilities.HttpClientUtil;
 import utils.Utilities;
 import org.openqa.selenium.WebDriver;
+
+import java.io.IOException;
 
 public class LoginTest extends Base {
 
@@ -20,6 +21,8 @@ public class LoginTest extends Base {
 
     public WebDriver driver;
     LoginPage loginPage;
+
+
 
     @BeforeMethod
     public void setup() {

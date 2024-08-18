@@ -2,13 +2,17 @@ package base;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import utilities.HttpClientUtil;
 import utils.Utilities;
 
 public class Base {
@@ -75,6 +79,18 @@ public class Base {
 		
 		return driver;
 		
+	}
+
+	protected List<String> testResults = new ArrayList<>();
+
+	public void createClickUpTask(int reportIndex, List<String> results, String credentialsUser, String listId) {
+		String[] resultsArray = results.toArray(new String[0]);
+		try {
+			String taskID = HttpClientUtil.createTask(resultsArray, credentialsUser, listId);
+			System.out.printf("Task 'id': %s%n", taskID);
+		} catch (IOException | InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

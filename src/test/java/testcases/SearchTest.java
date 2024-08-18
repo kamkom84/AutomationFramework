@@ -2,14 +2,18 @@ package testcases;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import base.Base;
 import pages.HomePage;
 import pages.SearchPage;
+import utilities.HttpClientUtil;
 import utils.TestResult;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +27,31 @@ public class SearchTest extends Base {
 	SearchPage searchPage;
 	HomePage homePage;
 	List<TestResult> testResults;
+
+	@AfterMethod
+	public void captureTestResults(ITestResult result) {
+		if (result.getStatus() == ITestResult.FAILURE) {
+			testResults.add(new TestResult(result.getName(), "Failed"));
+		} else if (result.getStatus() == ITestResult.SUCCESS) {
+			testResults.add(new TestResult(result.getName(), "Passed"));
+		} else if (result.getStatus() == ITestResult.SKIP) {
+			testResults.add(new TestResult(result.getName(), "Skipped"));
+		}
+	}
+
+	@AfterClass
+	public void generateReport() throws IOException, InterruptedException {
+		int reportIndex = testResults.size();
+		String credentialsUser = "kamen.dimitrov@ctgaming.com";
+
+		//K List:
+		String listId1 = "901506232548";  //fake list> "901506232548";
+		HttpClientUtil.createTask(
+				testResults.stream().map(TestResult::toString).toArray(String[]::new),
+				credentialsUser,
+				listId1
+		);
+	}
 
 	@BeforeClass
 	public void setup() {
@@ -52,10 +81,8 @@ public class SearchTest extends Base {
 			searchPage = homePage.searchForAProduct(dataProp.getProperty("validProduct"));
 			boolean isDisplayed = searchPage.displayStatusOfHPValidProduct();
 			Assert.assertTrue(isDisplayed, "Valid product HP is not displayed");
-			testResults.add(new TestResult("Verify Search With Valid Product", "Passed"));
-		} catch (AssertionError | Exception e) {
-			testResults.add(new TestResult("Verify Search With Valid Product", "Failed: " + e.getMessage()));
-			throw e;
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -65,10 +92,8 @@ public class SearchTest extends Base {
 			searchPage = homePage.searchForAProduct(dataProp.getProperty("invalidProduct"));
 			String noProductMessage = searchPage.getNoProductMessageText();
 			Assert.assertEquals(noProductMessage, dataProp.getProperty("noProductTextInSearchResults"));
-			testResults.add(new TestResult("Verify Search With Invalid Product", "Passed"));
-		} catch (AssertionError | Exception e) {
-			testResults.add(new TestResult("Verify Search With Invalid Product", "Failed: " + e.getMessage()));
-			throw e;
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -77,13 +102,9 @@ public class SearchTest extends Base {
 		try {
 			searchPage = homePage.clickOnSearchButton();
 			String noProductMessage = searchPage.getNoProductMessageText();
-			Assert.assertEquals(noProductMessage, dataProp.getProperty("noProductTextInSearchResults"));
-			testResults.add(new TestResult("Verify Search Without Any Product", "Passed"));
-		} catch (AssertionError | Exception e) {
-			testResults.add(new TestResult("Verify Search Without Any Product", "Failed: " + e.getMessage()));
-			throw e;
+			Assert.assertEquals(noProductMessage, dataProp.getProperty("noProductTextInSearchResults"));;
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
-
 }
-

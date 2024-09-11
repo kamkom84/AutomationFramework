@@ -52,12 +52,12 @@ public class HttpClientUtil {
 
         int passedCount = 0;
         int failedCount = 0;
-        Set<String> uniqueResults = new LinkedHashSet<>(); // Using a Set to prevent duplicates
+        Set<String> uniqueResults = new LinkedHashSet<>();
 
         // Process each test result
         for (String result : results) {
             String formattedResult = formatTestResult(result);
-            uniqueResults.add(formattedResult); // Ensures only unique results are added
+            uniqueResults.add(formattedResult);
             if (result.contains("Passed")) {
                 passedCount++;
             } else if (result.contains("Failed")) {
@@ -68,7 +68,7 @@ public class HttpClientUtil {
         int totalTests = passedCount + failedCount;
 
         StringBuilder markdownDescription = new StringBuilder();
-        markdownDescription.append(String.format("Total tests executed: %d\nfailed: %d / passed: %d\n\n", totalTests, failedCount, passedCount));
+        markdownDescription.append(String.format("Total tests executed: %d\nFailed: %d / Passed: %d\n\n", totalTests, failedCount, passedCount));
         markdownDescription.append("Test Results:\n");
 
         for (String uniqueResult : uniqueResults) {
@@ -134,3 +134,4 @@ public class HttpClientUtil {
         return result;
     }
 }
+

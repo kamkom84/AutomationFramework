@@ -14,6 +14,7 @@ import utilities.HttpClientUtil;
 import utils.TestResult;
 
 import java.io.IOException;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class SearchTest extends Base {
 	HomePage homePage;
 	List<TestResult> testResults;
 
-	//@AfterMethod
+	@AfterMethod
 	public void captureTestResults(ITestResult result) {
 		if (result.getStatus() == ITestResult.FAILURE) {
 			testResults.add(new TestResult(result.getName(), "Failed"));
@@ -39,13 +40,14 @@ public class SearchTest extends Base {
 		}
 	}
 
-	//@AfterClass
+	@AfterClass
 	public void generateReport() throws IOException, InterruptedException {
 		int reportIndex = testResults.size();
 		String credentialsUser = "kamen.dimitrov@ctgaming.com";
 
-		//K's private List:
-		String listId1 = "901506232548";  //fake private clickUp list> 901506232548;
+		// K's private List:
+		String listId1 = "901506232548";  // Fake private ClickUp list
+
 		HttpClientUtil.createTask(
 				testResults.stream().map(TestResult::toString).toArray(String[]::new),
 				credentialsUser,

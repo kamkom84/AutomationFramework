@@ -1,5 +1,7 @@
 package testcases;
 
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -82,20 +84,30 @@ public class SearchTest extends Base {
 		try {
 			searchPage = homePage.searchForAProduct(dataProp.getProperty("validProduct"));
 			boolean isDisplayed = searchPage.displayStatusOfHPValidProduct();
-			Assert.assertTrue(isDisplayed, "Valid product HP is not displayed");
+			Assert.assertTrue(isDisplayed, "The valid product (HP) is not displayed as expected.");
+		} catch (NoSuchElementException e) {
+			throw new AssertionError("Failed to locate the element that represents the valid product on the search results page.", e);
+		} catch (TimeoutException e) {
+			throw new AssertionError("The search operation took too long to complete.", e);
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new AssertionError("An unexpected error occurred while verifying search with a valid product.", e);
 		}
 	}
+
 
 	@Test(priority = 2)
 	public void verifySearchWithInvalidProduct() {
 		try {
 			searchPage = homePage.searchForAProduct(dataProp.getProperty("invalidProduct"));
 			String noProductMessage = searchPage.getNoProductMessageText();
-			Assert.assertEquals(noProductMessage, dataProp.getProperty("noProductTextInSearchResults"));
+			Assert.assertEquals(noProductMessage, dataProp.getProperty("noProductTextInSearchResults"),
+					"The message displayed for no products found does not match the expected result.");
+		} catch (NoSuchElementException e) {
+			throw new AssertionError("Failed to find the element that displays the no-product message on the search results page.", e);
+		} catch (TimeoutException e) {
+			throw new AssertionError("The search took too long to complete.", e);
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new AssertionError("An unexpected error occurred while verifying search with an invalid product.", e);
 		}
 	}
 
@@ -104,9 +116,14 @@ public class SearchTest extends Base {
 		try {
 			searchPage = homePage.clickOnSearchButton();
 			String noProductMessage = searchPage.getNoProductMessageText();
-			Assert.assertEquals(noProductMessage, dataProp.getProperty("noProductTextInSearchResults"));;
+			Assert.assertEquals(noProductMessage, dataProp.getProperty("noProductTextInSearchResults"),
+					"The no-product message does not match the expected result.");
+		} catch (NoSuchElementException e) {
+			throw new AssertionError("Failed to locate the element for no product message on the search page.", e);
+		} catch (TimeoutException e) {
+			throw new AssertionError("The search page took too long to load.", e);
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new AssertionError("An unexpected error occurred during the search verification.", e);
 		}
 	}
 }

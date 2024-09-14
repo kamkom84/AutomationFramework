@@ -94,7 +94,6 @@ public class SearchTest extends Base {
 		}
 	}
 
-
 	@Test(priority = 2)
 	public void verifySearchWithInvalidProduct() {
 		try {

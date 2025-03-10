@@ -19,7 +19,7 @@ public class RegisterTest extends Base{
 	
 	public WebDriver driver;
 	RegisterPage registerPage;
-	AccountSuccessPage accountSuccessPage;
+	AccountSuccessPage accountSuccessPage; //
 	
 	@BeforeMethod
 	public void setup() {

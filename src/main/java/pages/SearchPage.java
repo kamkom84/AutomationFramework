@@ -16,24 +16,18 @@ public class SearchPage {
 	private WebElement noProductMessage;
 
 	public SearchPage(WebDriver driver) {
-
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
-
 	}
 
 	public String getNoProductMessageText() {
-
 		String noProductMessageText = noProductMessage.getText();
 		return noProductMessageText;
-
 	}
 
 	public boolean displayStatusOfHPValidProduct() {
-
 		boolean displayStatus = validHPProduct.isDisplayed();
 		return displayStatus;
-
 	}
 
 	public WebElement getHPValidProductElement() {

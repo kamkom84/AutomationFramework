@@ -13,17 +13,13 @@ public class AccountPage {
 	WebElement editYourAccountOption;
 	
 	public AccountPage(WebDriver driver) {
-		
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
-		
 	}
 	
 	public boolean getDisplayStatusOfEditYourAccountOption() {
-		
 		boolean displayStatus = editYourAccountOption.isDisplayed();
 		return displayStatus;
-		
 	}
 
 

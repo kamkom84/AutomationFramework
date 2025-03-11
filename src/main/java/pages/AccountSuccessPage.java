@@ -13,17 +13,13 @@ public class AccountSuccessPage {
 	private WebElement accountSuccessPageHeading;
 	
 	public AccountSuccessPage(WebDriver driver ) {
-		
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
-		
 	}
 	
 	public String getAccountSuccessPageHeading() {
-		
 		String accountSuccessPageHeadingText = accountSuccessPageHeading.getText();
 		return accountSuccessPageHeadingText;
-		
 	}
 
 }

@@ -22,45 +22,33 @@ public class LoginPage {
 	private WebElement emailPasswordNotMatchingWarning;
 	
 	public LoginPage(WebDriver driver) {
-		
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
-		
 	}
 	
 	public void enterEmailAddress(String emailText) {
-		
 		emailAddressFiled.sendKeys(emailText);
-		
 	}
 	
 	public void enterPassword(String passwordText) {
-		
 		passwordField.sendKeys(passwordText);
-		
 	}
 	
 	public AccountPage clickOnLoginButton() {
-		
 		loginButton.click();
 		return new AccountPage(driver);
-		
 	}
 	
 	public AccountPage login(String emailText, String passwordText) {
-		
 		emailAddressFiled.sendKeys(emailText);
 		passwordField.sendKeys(passwordText);
 		loginButton.click();
 		return new AccountPage(driver);
-		
 	}
 	
 	public String getEmailPasswordNotMatchingWarningMessage() {
-		
 		String warningText = emailPasswordNotMatchingWarning.getText();
 		return warningText;
-		
 	}
 
 }

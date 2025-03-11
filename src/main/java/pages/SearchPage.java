@@ -36,6 +36,10 @@ public class SearchPage {
 
 	}
 
+	public WebElement getHPValidProductElement() {
+		return validHPProduct;
+	}
+
 }
 
 

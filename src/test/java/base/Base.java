@@ -43,25 +43,15 @@ public class Base {
 	}
 	
 	public WebDriver initializeBrowserAndOpenApplicationURL(String browser) {
-
 		WebDriver driver;
-
 		if(browser.equalsIgnoreCase("chrome")) {
-			
 			driver = new ChromeDriver();
-			
 		}else if(browser.equalsIgnoreCase("firefox")) {
-			
 			driver = new FirefoxDriver();
-			
 		}else if(browser.equalsIgnoreCase("edge")) {
-			
 			driver = new EdgeDriver();
-			
 		}else {
-
 			throw new IllegalArgumentException("Browser type not supported");
-
 		}
 /*
 		ChromeOptions options = new ChromeOptions();
@@ -75,21 +65,6 @@ public class Base {
 		driver.get(prop.getProperty("url"));
 		
 		return driver;
-		
 	}
-
-	protected List<String> testResults = new ArrayList<>();
-
-//	public void createClickUpTask(int reportIndex, List<String> results, String credentialsUser, String listId) {
-//		String[] resultsArray = results.toArray(new String[0]);
-//		try {
-//			LocalTime startTime = null;
-//			String taskID = HttpClientUtil.createTask(resultsArray, credentialsUser, listId,startTime,
-//					endTime );
-//			System.out.printf("Task 'id': %s%n", taskID);
-//		} catch (IOException | InterruptedException e) {
-//			e.printStackTrace();
-//		}
-//	}
 
 }

@@ -33,7 +33,7 @@ public class SearchTest extends Base {
 		testResults = new ArrayList<>();
 	}
 
-	//@AfterClass
+	@AfterClass
 	public void tearDown() {
 		printTestResults();
 		if (driver != null) {

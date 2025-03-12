@@ -6,6 +6,8 @@
     </listeners>
     <test name="Automation Suite Test Cases">
         <classes>
+            <class name="testcases.LoginTest"/>
+            <class name="testcases.RegisterTest"/>
             <class name="testcases.SearchTest"/>
         </classes>
     </test> <!-- Test -->

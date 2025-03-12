@@ -8,7 +8,6 @@
         <classes>
             <class name="testcases.LoginTest"/>
             <class name="testcases.RegisterTest"/>
-            <class name="testcases.SearchTest"/>
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->

@@ -7,16 +7,22 @@
         <list>
           <option value="TutorialsNinjaProj" />
           <option value="TutorialsNinjaProj" />
+          <option value="UITest" />
+          <option value="UITest" />
         </list>
       </option>
       <option name="ignoredPackages">
         <list>
           <option value="org.apache.commons:commons-compress:1.19" />
           <option value="com.google.code.gson:gson:2.8.6" />
+          <option value="com.google.code.gson:gson:2.8.6" />
+          <option value="org.apache.commons:commons-compress:1.19" />
         </list>
       </option>
       <option name="ignoredReasons">
         <list>
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
           <option value="Not exploitable" />
           <option value="Not exploitable" />
         </list>

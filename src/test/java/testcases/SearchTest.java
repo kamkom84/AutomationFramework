@@ -33,7 +33,7 @@ public class SearchTest extends Base {
 		testResults = new ArrayList<>();
 	}
 
-	@AfterClass
+	//@AfterClass
 	public void tearDown() {
 		printTestResults();
 		if (driver != null) {
@@ -71,7 +71,7 @@ public class SearchTest extends Base {
 	@Test(priority = 2)
 	public void verifySearchWithValidProduct() {
 		try {
-			searchPage = homePage.searchForAProduct(dataProp.getProperty("validProduct"));
+			searchPage = homePage.searchForAProduct(dataProp.getProperty("invalidProduct"));
 			boolean isDisplayed = searchPage.displayStatusOfHPValidProduct();
 			Assert.assertTrue(isDisplayed, "Valid product HP is not displayed");
 			testResults.add(new TestResult("Verify Search With Valid Product", "Passed"));

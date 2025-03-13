@@ -107,6 +107,7 @@ public class SearchTest extends Base {
 		}
 	}
 
+
 	public void highlightElement(WebElement element, boolean isTestPassed) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		if (isTestPassed) {
